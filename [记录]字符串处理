@@ -1,3 +1,10 @@
+```c
+//键盘输入可带空格的字符串
+char s[21];
+gets(s );
+cout << s << endl;
+
+```
 ```C
 //定义:
 _CRTIMP char *  __cdecl strstr(const char *, const char *);
