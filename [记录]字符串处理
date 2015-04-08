@@ -1,0 +1,74 @@
+```C
+//定义:
+_CRTIMP char *  __cdecl strstr(const char *, const char *);
+_CRTIMP char *  __cdecl strtok(char *, const char *);
+
+/************************************************************************/
+/*                         字符串分割的一些方法,
+                    getline:stringstream,头文件<sstream>
+                    strtok;源字符串会被修改
+*/
+/************************************************************************/
+#include <IOSTREAM>
+#include <STRING>
+#include <SSTREAM>
+//纯C++的函数:getline,默认\n
+//根据空格分割
+//ok
+using namespace std;
+/*
+int main(){
+     char* inStr = "wo shi yi+ zhi xiao xiao#niao!hello";
+     stringstream ss(inStr);
+     string s;
+     while(getline(ss,s,' ')){
+          cout << s << endl;
+     }
+     return 0;
+}
+*/
+//纯C++的函数:>>
+//输入流,根据空白符(空格,tab == \t,\n)停止输入!!!
+int main(){
+     char* inStr = "w1\t1\n12     2o shi yi+ 112 zhi xiao xiao#niao!hello";
+     stringstream ss(inStr);
+     
+     char buffer[10];
+     ss>>buffer;
+     cout<<buffer<<endl;
+
+     return 0;
+}
+//应用strtok函数
+//线程不安全,保存一个全局变量指针指向分割后剩下字符串.自定义变量p指向分隔符前面分割的字符串.
+//注意：strtok函数的返回值是分割后剩下字符串的指针，所以分割出一个子字符串之后，再次调用时要用NULL代替第一个参数
+/*
+#include <IOSTREAM>
+#include <STRING.H>
+using namespace std;
+int main(){
+     //char* inStr = "wo shi yi+     zhi xiao xiao#niao!hello";    
+     //上面char*不可以...
+     char inStr[] = "wo shi yi+ zhi xiao xiao#niao!hello";
+     const char* delm = " ";     //此处用空格分割. 如果要用空格,逗号,!号,#号的话呢? delm = " ,!#";
+     char* p = strtok(inStr,delm);
+    
+     while(p){
+          cout << p << endl;
+          p = strtok(NULL,delm);
+     }
+     return 0;
+}
+*/
+sprintf 和 scanf
+int main(){
+    char reschar [50] = {'s' ,'t'};
+    //sprintf(起始位置 ,格式化符, 对应的值)
+    //不仅把int->string,而且直接进行了字符串连接.
+    sprintf(reschar +strlen( reschar),"%c%d" ,'a', 13);
+    cout << reschar << endl;     //结果:ata13
+    return 0;
+}
+
+
+```
